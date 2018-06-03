@@ -1,0 +1,37 @@
+{
+  "name": "hyperclick-nsis",
+  "version": "0.0.0",
+  "description": "Hyperclick provider for Nullsoft Scriptable Install System (NSIS)",
+  "license": "MIT",
+  "scripts": {
+    "precommit": "npm run test",
+    "test": "eslint ./lib"
+  },
+  "author": {
+    "name": "Jan T. Sott",
+    "url": "http://github.com/idleberg"
+  },
+  "keywords": [
+    "nsis",
+    "hyperclick"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/idleberg/atom-hyperclick-nsis.git"
+  },
+  "main": "./lib/hyperclick-nsis",
+  "engines": {
+    "atom": ">=1.19.0 <2.0.0"
+  },
+  "package-deps": [
+    "hyperclick"
+  ],
+  "dependencies": {
+    "atom-package-deps": "^4.6.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.9.0",
+    "husky": "^0.14.3"
+  }
+}
