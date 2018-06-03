@@ -23,6 +23,13 @@
   "engines": {
     "atom": ">=1.19.0 <2.0.0"
   },
+  "providedServices": {
+    "hyperclick.provider": {
+      "versions": {
+        "0.0.0": "getProvider"
+      }
+    }
+  },
   "package-deps": [
     "hyperclick"
   ],
