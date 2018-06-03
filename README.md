@@ -3,7 +3,7 @@
 [![apm](https://img.shields.io/apm/l/hyperclick-nsis.svg?style=flat-square)](https://atom.io/packages/hyperclick-nsis)
 [![apm](https://img.shields.io/apm/v/hyperclick-nsis.svg?style=flat-square)](https://atom.io/packages/hyperclick-nsis)
 [![apm](https://img.shields.io/apm/dm/hyperclick-nsis.svg?style=flat-square)](https://atom.io/packages/hyperclick-nsis)
-[![CircleCI](https://img.shields.io/circleci/project/idleberg/atom-hyperclick-nsis.svg?)](https://circleci.com/gh/idleberg/atom-hyperclick-nsis/)
+[![CircleCI](https://img.shields.io/circleci/project/idleberg/atom-hyperclick-nsis.svg?style=flat-square)](https://circleci.com/gh/idleberg/atom-hyperclick-nsis/)
 [![David](https://img.shields.io/david/dev/idleberg/atom-hyperclick-nsis.svg?style=flat-square)](https://david-dm.org/idleberg/atom-hyperclick-nsis?type=dev)
 [![Gitter](https://img.shields.io/badge/chat-Gitter-ed1965.svg?style=flat-square)](https://gitter.im/NSIS-Dev/Atom)
 
