@@ -34,7 +34,8 @@
     "hyperclick"
   ],
   "dependencies": {
-    "atom-package-deps": "^4.6.2"
+    "atom-package-deps": "^4.6.2",
+    "makensis": "^0.12.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
