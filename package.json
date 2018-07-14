@@ -35,10 +35,10 @@
   ],
   "dependencies": {
     "atom-package-deps": "^4.6.2",
-    "makensis": "^0.12.6"
+    "makensis": "^0.13.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.2.6",
     "eslint": "^5.0.1",
     "husky": "^0.14.3"
   }
