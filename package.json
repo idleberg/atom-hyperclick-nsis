@@ -1,6 +1,6 @@
 {
   "name": "hyperclick-nsis",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Hyperclick provider for Nullsoft Scriptable Install System (NSIS)",
   "license": "MIT",
   "scripts": {
@@ -35,7 +35,7 @@
   ],
   "dependencies": {
     "atom-package-deps": "^4.6.2",
-    "makensis": "^0.13.0"
+    "makensis": "^0.14.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",
