@@ -8,4 +8,5 @@ npm-debug.log*
 yarn-error.log
 
 # project specific
+*.js.map
 todo.md
