@@ -7,6 +7,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode none --watch",
     "lint": "eslint ./src",
+    "prepublishOnly": "npm run build",
     "test": "npm run lint"
   },
   "author": {
@@ -40,16 +41,16 @@
   ],
   "dependencies": {
     "atom-package-deps": "^5.1.0",
-    "makensis": "^0.18.1"
+    "makensis": "^0.20.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "babel-eslint": "^10.0.2",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.1.0",
-    "husky": "^3.0.2",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "eslint": "^6.8.0",
+    "husky": "^4.0.10",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "husky": {
     "hooks": {

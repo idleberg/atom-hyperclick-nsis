@@ -5,7 +5,7 @@ import { existsSync, realpathSync } from 'fs';
 import { install as installDeps } from 'atom-package-deps';
 import { platform } from 'os';
 import { isAbsolute, join, parse } from 'path';
-import { nsisDirSync } from 'makensis';
+import { nsisDir } from 'makensis';
 
 const includeRegExp = /(?:!include|LoadLanguageFile)\s+(?:"([^"]+)"|'([^']+)'|([^\r?\n]+$))/;
 const coreLibraries = [
@@ -76,15 +76,22 @@ const getRange = (textEditor, range) => {
   };
 };
 
-const findFilePaths = (currentPath, targetPath) => {
-  const nsisDir = nsisDirSync();
+const findFilePaths = async (currentPath, targetPath) => {
+  let nsisDirectory;
+
+  try {
+    nsisDirectory = await nsisDir();
+  } catch (e) {
+    console.error(e);
+    return pathErrorNotification();
+  }
 
   // Replace NSIS directory constant
   if (targetPath.includes('${NSISDIR}')) {
     if (platform() !== 'win32' && targetPath.includes('\\')) {
       targetPath = targetPath.replace(/\\/g, '/');
     }
-    targetPath = targetPath.replace(/\${NSISDIR}/ig, nsisDir);
+    targetPath = targetPath.replace(/\${NSISDIR}/ig, nsisDirectory);
   }
 
   let { dir: currentDir} = parse(currentPath);
@@ -94,9 +101,9 @@ const findFilePaths = (currentPath, targetPath) => {
   if(isAbsolute(targetDir)) {
     filePath = join(targetDir, targetName + targetExt);
   } else if (coreLibraries.indexOf(targetName + targetExt) !== -1) {
-    filePath = join(nsisDir, 'Include', targetName + targetExt);
+    filePath = join(nsisDirectory, 'Include', targetName + targetExt);
   } else if (coreLanguages.indexOf(targetName) !== -1) {
-    filePath = join(nsisDir, 'Contrib/Language files', targetName + targetExt);
+    filePath = join(nsisDirectory, 'Contrib/Language files', targetName + targetExt);
   } else {
     filePath = join(currentDir, targetDir, targetName + targetExt);
   }
@@ -131,7 +138,17 @@ function satisfyDependencies() {
   return results;
 }
 
-function showNotification() {
+function pathErrorNotification() {
+  atom.notifications.addError(
+    `${meta.name}`,
+    {
+      detail: '`makensis.exe` is not in your PATH [environmental variable](http://superuser.com/a/284351/195953)',
+      dismissable: true
+    }
+  );
+}
+
+function saveAsNotification() {
   const notification = atom.notifications.addWarning(
     `${meta.name}`,
     {
@@ -187,15 +204,15 @@ export function getProvider() {
       if (targetRange && targetFile) {
         return {
           range: targetRange,
-          callback() {
+          async callback() {
             let filePath, filePaths;
 
             try {
-              filePaths = findFilePaths(textEditor.getPath(), targetFile);
+              filePaths = await findFilePaths(textEditor.getPath(), targetFile);
               filePath = filePaths.find(filePath => existsSync(filePath));
             } catch(e) {
               console.error(e);
-              return showNotification();
+              return saveAsNotification();
             }
 
             if (filePath) {
