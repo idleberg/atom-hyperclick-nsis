@@ -7,6 +7,7 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode none --watch",
     "lint": "eslint ./src",
+    "prepublishOnly": "npm run build",
     "test": "npm run lint"
   },
   "author": {
