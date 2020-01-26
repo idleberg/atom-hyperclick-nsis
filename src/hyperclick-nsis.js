@@ -7,6 +7,8 @@ import { platform } from 'os';
 import { isAbsolute, join, parse } from 'path';
 import { nsisDir } from 'makensis';
 
+export { config } from './config';
+
 const includeRegExp = /(?:!include|LoadLanguageFile)\s+(?:"([^"]+)"|'([^']+)'|([^\r?\n]+$))/;
 const coreLibraries = [
   'Colors.nsh',
@@ -77,10 +79,13 @@ const getRange = (textEditor, range) => {
 };
 
 const findFilePaths = async (currentPath, targetPath) => {
+  const pathToMakensis = atom.config.get(`${meta.name}.pathToMakensis`);
+  const options = pathToMakensis && pathToMakensis.trim().length ? {pathToMakensis: pathToMakensis} : {};
+
   let nsisDirectory;
 
   try {
-    nsisDirectory = await nsisDir();
+    nsisDirectory = await nsisDir(options);
   } catch (e) {
     console.error(e);
     return pathErrorNotification();
@@ -176,16 +181,6 @@ function saveAsNotification() {
     }
   );
 }
-
-export const config = {
-  manageDependencies: {
-    title: 'Manage Dependencies',
-    description: 'When enabled, third-party dependencies will be installed automatically',
-    type: 'boolean',
-    default: true,
-    order: 1
-  }
-};
 
 // This package depends on hyperclick, make sure it's installed
 export function activate() {
