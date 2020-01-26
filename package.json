@@ -44,11 +44,11 @@
     "makensis": "^0.20.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.8.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
-    "husky": "^4.0.10",
+    "husky": "^4.2.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
