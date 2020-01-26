@@ -1,6 +1,6 @@
 {
   "name": "hyperclick-nsis",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Hyperclick provider for Nullsoft Scriptable Install System (NSIS)",
   "license": "MIT",
   "scripts": {
