@@ -160,7 +160,7 @@ function saveAsNotification() {
 // This package depends on hyperclick, make sure it's installed
 export function activate() {
   if (atom.config.get(`${meta.name}.manageDependencies`) === true) {
-    satisfyDependencies();
+    satisfyDependencies('hyperclick-nsis');
   }
 }
 
