@@ -2,10 +2,10 @@
 
 import * as meta from '../package.json';
 import { existsSync, realpathSync } from 'fs';
-import { install as installDeps } from 'atom-package-deps';
-import { platform } from 'os';
 import { isAbsolute, join, parse } from 'path';
 import { nsisDir } from 'makensis';
+import { platform } from 'os';
+import { satisfyDependencies } from 'atom-satisfy-dependencies';
 
 export { config } from './config';
 
@@ -105,9 +105,9 @@ const findFilePaths = async (currentPath, targetPath) => {
 
   if(isAbsolute(targetDir)) {
     filePath = join(targetDir, targetName + targetExt);
-  } else if (coreLibraries.indexOf(targetName + targetExt) !== -1) {
+  } else if (coreLibraries.indexOf(targetName + targetExt)) {
     filePath = join(nsisDirectory, 'Include', targetName + targetExt);
-  } else if (coreLanguages.indexOf(targetName) !== -1) {
+  } else if (coreLanguages.indexOf(targetName)) {
     filePath = join(nsisDirectory, 'Contrib/Language files', targetName + targetExt);
   } else {
     filePath = join(currentDir, targetDir, targetName + targetExt);
@@ -117,31 +117,6 @@ const findFilePaths = async (currentPath, targetPath) => {
 
   return filePaths;
 };
-
-function satisfyDependencies() {
-  let k;
-  let v;
-
-  installDeps(meta.name);
-
-  const ref = meta['package-deps'];
-  const results = [];
-
-  for (k in ref) {
-    if (typeof ref !== 'undefined' && ref !== null) {
-      v = ref[k];
-      if (atom.packages.isPackageDisabled(v)) {
-        if (atom.inDevMode()) {
-          console.log('Enabling package \'' + v + '\'');
-        }
-        results.push(atom.packages.enablePackage(v));
-      } else {
-        results.push(void 0);
-      }
-    }
-  }
-  return results;
-}
 
 function pathErrorNotification() {
   atom.notifications.addError(
