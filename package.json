@@ -38,7 +38,7 @@
     }
   },
   "package-deps": [
-    "hyperclick"
+    "atom-ide-hyperclick"
   ],
   "dependencies": {
     "atom-package-deps": "^6.0.0",
