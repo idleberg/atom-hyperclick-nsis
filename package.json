@@ -31,7 +31,7 @@
     "language-nsis:grammar-used"
   ],
   "providedServices": {
-    "hyperclick.provider": {
+    "hyperclick": {
       "versions": {
         "0.1.0": "getProvider"
       }
