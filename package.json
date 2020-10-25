@@ -38,20 +38,24 @@
     }
   },
   "package-deps": [
-    "atom-ide-hyperclick"
+    {
+      "name": "atom-ide-hyperclick",
+      "minimumVersion": "1.0.4"
+    }
   ],
   "dependencies": {
-    "atom-package-deps": "^6.0.0",
-    "atom-satisfy-dependencies": "^0.2.1",
-    "makensis": "^0.21.1"
+    "atom-package-deps": "^7.0.2",
+    "atom-satisfy-dependencies": "^0.3.0",
+    "makensis": "^0.21.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.12.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "eslint": "^7.4.0",
-    "husky": "^4.2.5",
-    "webpack": "^4.43.0",
+    "eslint": "^7.12.0",
+    "eslint-plugin-json": "^2.1.2",
+    "husky": "^4.3.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
   "husky": {
