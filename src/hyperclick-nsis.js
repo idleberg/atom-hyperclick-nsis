@@ -191,6 +191,7 @@ export function getProvider() {
             }
 
             atom.beep();
+            return;
           }
         };
       }
