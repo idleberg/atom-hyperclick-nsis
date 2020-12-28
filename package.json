@@ -55,12 +55,16 @@
     "eslint": "^7.16.0",
     "eslint-plugin-json": "^2.1.2",
     "husky": "^4.3.6",
+    "lint-staged": ">=10",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
   }
 }
