@@ -1,6 +1,6 @@
 'use babel';
 
-import * as meta from '../package.json';
+import meta from '../package.json';
 import { existsSync, realpathSync } from 'fs';
 import { isAbsolute, join, parse } from 'path';
 import { nsisDir } from 'makensis';
