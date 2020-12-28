@@ -10,4 +10,5 @@ yarn.lock
 
 # project specific
 *.js.map
+*.js.LICENSE.txt
 todo.md
