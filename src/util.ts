@@ -1,13 +1,7 @@
-'use babel';
-
-import meta from '../package.json';
-import { existsSync, realpathSync } from 'fs';
 import { isAbsolute, join, parse } from 'path';
-import { nsisDir } from 'makensis';
+import { name } from '../package.json';
 import { platform } from 'os';
-import { satisfyDependencies } from 'atom-satisfy-dependencies';
-
-export { config } from './config';
+import config from './config';
 
 const includeRegExp = /(?:!include|LoadLanguageFile)\s+(?:"([^"]+)"|'([^']+)'|([^\r?\n]+$))/;
 const coreLibraries = [
@@ -78,8 +72,9 @@ const getRange = (textEditor, range) => {
   };
 };
 
-const findFilePaths = async (currentPath, targetPath) => {
-  const pathToMakensis = atom.config.get(`${meta.name}.pathToMakensis`);
+async function findFilePaths(currentPath, targetPath) {
+  const { nsisDir } = await import('makensis');
+  const pathToMakensis = config.get(`${name}.pathToMakensis`);
   const options = pathToMakensis && pathToMakensis.trim().length ? {pathToMakensis: pathToMakensis} : {};
 
   let nsisDirectory;
@@ -116,11 +111,11 @@ const findFilePaths = async (currentPath, targetPath) => {
   const filePaths = [filePath];
 
   return filePaths;
-};
+}
 
 function pathErrorNotification() {
   atom.notifications.addError(
-    `${meta.name}`,
+    `${name}`,
     {
       detail: '`makensis.exe` is not in your PATH [environmental variable](http://superuser.com/a/284351/195953)',
       dismissable: true
@@ -130,7 +125,7 @@ function pathErrorNotification() {
 
 function saveAsNotification() {
   const notification = atom.notifications.addWarning(
-    `${meta.name}`,
+    `${name}`,
     {
       detail: 'Unable detect path for unsaved file. Please save this file and try again.',
       dismissable: true,
@@ -157,44 +152,8 @@ function saveAsNotification() {
   );
 }
 
-// This package depends on hyperclick, make sure it's installed
-export function activate() {
-  if (atom.config.get(`${meta.name}.manageDependencies`) === true) {
-    satisfyDependencies('hyperclick-nsis');
-  }
-}
-
-export function getProvider() {
-  return {
-    priority: 1,
-    grammarScopes: ['source.nsis', 'source.nsis.bridle'],
-    getSuggestionForWord(textEditor, text, range){
-      const { targetRange, targetFile } = getRange(textEditor, range);
-
-      if (targetRange && targetFile) {
-        return {
-          range: targetRange,
-          async callback() {
-            let filePath, filePaths;
-
-            try {
-              filePaths = await findFilePaths(textEditor.getPath(), targetFile);
-              filePath = filePaths.find(filePath => existsSync(filePath));
-            } catch(e) {
-              console.error(e);
-              return saveAsNotification();
-            }
-
-            if (filePath) {
-                filePath = realpathSync(filePath);
-                return atom.workspace.open(filePath);
-            }
-
-            atom.beep();
-            return;
-          }
-        };
-      }
-    }
-  };
-}
+export {
+  getRange,
+  findFilePaths,
+  saveAsNotification
+};

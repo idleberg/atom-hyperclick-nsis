@@ -1,14 +1,14 @@
-# dependencies
+# Package Managers
 bower_components/
 node_modules/
-vendor/
-
-# package manager files
-npm-debug.log*
+*npm-debug.log*
 yarn-error.log
-yarn.lock
 
-# project specific
-*.js.map
-*.js.LICENSE.txt
-todo.md
+# Development
+.eslintcache
+*.map
+.rollup.cache/
+.stylelintcache
+.yo-rc.json
+*.map
+tsconfig.tsbuildinfo
