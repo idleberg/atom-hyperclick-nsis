@@ -3,5 +3,5 @@ import DeveloperConsole from '@atxm/developer-console';
 
 export default new DeveloperConsole({
   name: name,
-  backgroundColor: 'coral'
+  backgroundColor: 'salmon'
 });

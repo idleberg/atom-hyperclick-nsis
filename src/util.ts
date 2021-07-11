@@ -5,7 +5,8 @@ import { platform } from 'os';
 import config from './config';
 
 const includeRegExp = /(?:!include|LoadLanguageFile)\s+(?:"([^"]+)"|'([^']+)'|([^\r?\n]+$))/;
-const coreLibraries = [
+
+const coreLibraries: string[] = [
   'Colors.nsh',
   'FileFunc.nsh',
   'InstallOptions.nsh',
@@ -30,7 +31,8 @@ const coreLibraries = [
   'WordFunc.nsh',
   'x64.nsh'
 ];
-const coreLanguages = [
+
+const coreLanguages: string[] = [
   'Afrikaans', 'Albanian', 'Arabic', 'Armenian', 'Asturian',
   'Basque', 'Belarusian', 'Bosnian', 'Breton', 'Bulgarian',
   'Catalan', 'Corsican', 'Croatian', 'Czech',
@@ -55,9 +57,9 @@ const coreLanguages = [
 ];
 
 function getRange(textEditor: TextEditor, range: Range): any {
-  const searchStart = [range.start.row, 0];
-  const searchEnd = [range.end.row + 1, 0];
-  const searchRange = [searchStart, searchEnd];
+  const searchStart: [number, number] = [range.start.row, 0];
+  const searchEnd: [number, number] = [range.end.row + 1, 0];
+  const searchRange: [[number, number], [number, number]] = [searchStart, searchEnd];
 
   let targetRange = null;
   let targetFile = null;
