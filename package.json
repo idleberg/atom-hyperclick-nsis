@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "analyze": "source-map-explorer lib/**/*.js",
-    "build": "rollup --config",
+    "build": "npm run clean && rollup --config",
+    "clean": "rimraf ./lib",
     "dev": "npm run start",
     "format": "prettierx --write ./src",
     "lint:code": "eslint --ignore-path .gitignore --no-error-on-unmatched-pattern ./src/**/*.ts",
@@ -29,7 +30,7 @@
   },
   "main": "./lib/index",
   "engines": {
-    "atom": ">=1.19.0 <2.0.0"
+    "atom": ">=1.56.0 <2.0.0"
   },
   "activationHooks": [
     "language-nsis:grammar-used"
@@ -42,12 +43,16 @@
     }
   },
   "package-deps": [
-    {
-      "name": "atom-ide-hyperclick",
-      "minimumVersion": "1.0.4"
-    }
+    [
+      {
+        "name": "atom-ide-hyperclick",
+        "minimumVersion": "1.0.4"
+      },
+      {
+        "name": "hyperclick"
+      }
+    ]
   ],
-  "dependencies": {},
   "devDependencies": {
     "@atxm/developer-console": "^0.5.0",
     "@babel/core": "^7.14.3",
@@ -62,13 +67,14 @@
     "@typescript-eslint/parser": "^4.24.0",
     "atom-package-deps": "^7.2.3",
     "atom-satisfy-dependencies": "^0.3.0",
+    "babel-eslint": "^10.1.0",
     "core-js": "^3.12.1",
     "cross-env": "^7.0.3",
     "encoding": "^0.1.13",
+    "eslint": "^7.26.0",
     "eslint-config-eslint": "^7.0.0",
     "eslint-plugin-json": "^3.0.0",
     "eslint-plugin-prettierx": "^0.18.0",
-    "eslint": "^7.26.0",
     "husky": ">=4.3 <5",
     "jsonlint": "^1.6.3",
     "lint-staged": "^11.0.0",
@@ -76,6 +82,7 @@
     "makensis": "^0.23.2",
     "npm-run-all": "^4.1.5",
     "prettierx": "^0.18.0",
+    "rimraf": "^3.0.2",
     "rollup": "^2.52.8",
     "rollup-plugin-atomic": "^2.3.2",
     "source-map-explorer": "^2.5.2",

@@ -1,25 +1,31 @@
-import meta from '../package.json';
 import { constants, promises as fs } from 'fs';
-import config from './config';
 import { findFilePaths, getRange, saveAsNotification } from './util';
-
+import config from './config';
+import Logger from './log';
+import meta from '../package.json';
 
 export default {
   config: config.schema,
 
   // This package depends on hyperclick, make sure it's installed
-  async activate() {
+  async activate(): Promise<void> {
+    Logger.log('Activating package');
+
     if (atom.config.get(`${meta.name}.manageDependencies`) === true) {
       const { satisfyDependencies } = await import('atom-satisfy-dependencies');
       satisfyDependencies('hyperclick-nsis');
     }
   },
 
-  getProvider() {
+  deactivate(): void {
+    Logger.log('Deactivating package');
+  },
+
+  getProvider(): unknown {
     return {
       priority: 1,
       grammarScopes: ['source.nsis', 'source.nsis.bridle'],
-      getSuggestionForWord(textEditor, text, range){
+      getSuggestionForWord(textEditor, text, range) {
         const { targetRange, targetFile } = getRange(textEditor, range);
 
         if (targetRange && targetFile) {

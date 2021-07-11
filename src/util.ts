@@ -1,3 +1,4 @@
+import { Range, TextEditor } from 'atom';
 import { isAbsolute, join, parse } from 'path';
 import { name } from '../package.json';
 import { platform } from 'os';
@@ -53,7 +54,7 @@ const coreLanguages = [
   'Welsh'
 ];
 
-const getRange = (textEditor, range) => {
+function getRange(textEditor: TextEditor, range: Range): any {
   const searchStart = [range.start.row, 0];
   const searchEnd = [range.end.row + 1, 0];
   const searchRange = [searchStart, searchEnd];
@@ -66,13 +67,14 @@ const getRange = (textEditor, range) => {
     targetRange = found.range;
     found.stop();
   });
+
   return {
     targetFile,
     targetRange
   };
-};
+}
 
-async function findFilePaths(currentPath, targetPath) {
+async function findFilePaths(currentPath: string, targetPath: string): Promise<void | string[]> {
   const { nsisDir } = await import('makensis');
   const pathToMakensis = config.get(`${name}.pathToMakensis`);
   const options = pathToMakensis && pathToMakensis.trim().length ? {pathToMakensis: pathToMakensis} : {};
@@ -94,8 +96,8 @@ async function findFilePaths(currentPath, targetPath) {
     targetPath = targetPath.replace(/\${NSISDIR}/ig, nsisDirectory);
   }
 
-  let { dir: currentDir} = parse(currentPath);
-  let { dir: targetDir, ext: targetExt, name: targetName } = parse(targetPath);
+  const { dir: currentDir} = parse(currentPath);
+  const { dir: targetDir, ext: targetExt, name: targetName } = parse(targetPath);
   let filePath;
 
   if(isAbsolute(targetDir)) {
@@ -123,7 +125,7 @@ function pathErrorNotification() {
   );
 }
 
-function saveAsNotification() {
+function saveAsNotification(): void {
   const notification = atom.notifications.addWarning(
     `${name}`,
     {

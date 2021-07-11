@@ -1,18 +1,27 @@
+/* eslint-disable */
 module.exports = {
-  parser: "babel-eslint",
-  extends: [
-    "eslint:recommended",
-    "plugin:json/recommended"
-  ],
+  root: true,
   env: {
+    browser: true,
     es6: true,
     node: true
   },
-  rules: {
-    "no-undef": 0,
-    "no-console": 0
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:json/recommended'
+  ],
+  globals: {
+    atom: "readonly"
   },
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint',
+  ],
+  rules: {},
   ignorePatterns: [
-    'lib/'
+    'bower_components',
+    'lib',
+    'node_modules'
   ]
 };
