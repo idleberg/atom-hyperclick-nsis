@@ -15,6 +15,7 @@ export default {
   external: [
     // Atom
     'atom',
+    'electron',
 
     // Node
     'assert',
