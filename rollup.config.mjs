@@ -1,8 +1,8 @@
-import { createPlugins } from 'rollup-plugin-atomic';
+const { createPlugins } = require('rollup-plugin-atomic')
 
 const plugins = createPlugins(['ts', 'json', 'babel', 'terser'])
 
-export default {
+module.exports = {
   input: 'src/index.ts',
   output: [
     {
@@ -28,4 +28,4 @@ export default {
     'util'
   ],
   plugins: plugins
-};
+}
