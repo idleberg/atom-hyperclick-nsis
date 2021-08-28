@@ -3,7 +3,7 @@
 [![apm](https://flat.badgen.net/apm/license/hyperclick-nsis)](https://atom.io/packages/hyperclick-nsis)
 [![apm](https://flat.badgen.net/apm/v/hyperclick-nsis)](https://atom.io/packages/hyperclick-nsis)
 [![apm](https://flat.badgen.net/apm/dl/hyperclick-nsis)](https://atom.io/packages/hyperclick-nsis)
-[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-hyperclick-nsis)](https://circleci.com/gh/idleberg/atom-hyperclick-nsis)
+[![CI](https://img.shields.io/github/workflow/status/idleberg/atom-hyperclick-nsis/CI?style=flat-square)](https://github.com/idleberg/atom-hyperclick-nsis/actions)
 [![David](https://flat.badgen.net/david/dep/idleberg/atom-hyperclick-nsis)](https://david-dm.org/idleberg/atom-hyperclick-nsis)
 
 Hyperclick provider for Nullsoft Scriptable Install System (NSIS)
