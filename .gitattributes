@@ -5,4 +5,5 @@
 .prettierrc export-ignore
 .vscode/ export-ignore
 src/ export-ignore
+screenshot.png export-ignore
 tools/ export-ignore

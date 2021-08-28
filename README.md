@@ -8,7 +8,7 @@
 
 Hyperclick provider for Nullsoft Scriptable Install System (NSIS)
 
-![Screenshot](https://raw.github.com/idleberg/atom-hyperclick-nsis/master/screenshot.gif)
+![Screenshot](https://raw.github.com/idleberg/atom-hyperclick-nsis/master/screenshot.png)
 
 ## Installation
 
