@@ -2,6 +2,7 @@
 .circle-ci/ export-ignore
 .editorconfig export-ignore
 .eslintrc.cjs export-ignore
+.github/ export-ignore
 .prettierrc export-ignore
 .vscode/ export-ignore
 src/ export-ignore
